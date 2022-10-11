@@ -113,8 +113,41 @@ def truncate(string):
 
 
 def has_balanced_parens(string):
-    pass  # TODO: replace this line with your code
+    """Return true if all parentheses in a given string are balanced."""
+
+    parens = 0
+
+    for char in string:
+        if char == "(":
+            parens += 1
+        elif char == ")":
+            parens -= 1
+
+    return parens == 0
 
 
 def compress(string):
-    pass  # TODO: replace this line with your code
+    """Return a compressed version of the given string."""
+
+    compressed = []
+
+    curr_char = ""
+    char_count = 0
+
+    for char in string:
+        if char != curr_char:
+            compressed.append(curr_char)
+
+            if char_count > 1:
+                compressed.append(str(char_count))
+
+            curr_char = char
+            char_count = 0
+
+        char_count += 1
+
+    compressed.append(curr_char)
+    if char_count >1:
+        compressed.append(str(char_count))
+
+    return ''.join(compressed)
